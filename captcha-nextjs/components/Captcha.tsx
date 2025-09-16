@@ -6,12 +6,17 @@ export function Captcha() {
   function shuffle(data: string[]) {
     for (let i = data.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [data[i], data[j]] = [data[j], data[i]];
+      [data[i], data[j]] = [data[j], data[i]]; //swapping
+      if (data[i].includes("dog")) {
+        // mark it as dog
+      } else {
+        // mark it as muffin
+      }
     }
     return data;
   }
   const [images, setImages] = useState<string[]>([]);
-  const [selectedImages,setSelectedImages] = useState([])
+  const [selectedImages, setSelectedImages] = useState([])
   useEffect(() => {
     axios.get("/api/captcha-image")
       .then(res => {
